@@ -1,0 +1,38 @@
+public interface FizzBuzzPrinter {
+    void printFizzBuzz(int from, int to);
+}
+
+class ConsolePrinter implements FizzBuzzPrinter {
+    private static final int FIZZ_DIVISOR = 3;
+    private static final int BUZZ_DIVISOR = 5;
+
+    @Override
+    public void printFizzBuzz(int from, int to) {
+        for (int numero = from; numero <= to; numero++) {
+            System.out.println(getFizzBuzzValue(numero));
+        }
+    }
+
+    private String getFizzBuzzValue(int numero) {
+        boolean isFizz = numero % FIZZ_DIVISOR == 0;
+        boolean isBuzz = numero % BUZZ_DIVISOR == 0;
+
+        if (isFizz && isBuzz) {
+            return "FizzBuzz: " + numero;
+        }
+        if (isFizz) {
+            return "Buzz: " + numero;
+        }
+        if (isBuzz) {
+            return "Fizz: " + numero;
+        }
+        return String.valueOf(numero);
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        FizzBuzzPrinter printer = new ConsolePrinter();
+        printer.printFizzBuzz(1, 100);
+    }
+}
